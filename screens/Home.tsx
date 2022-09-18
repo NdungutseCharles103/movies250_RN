@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet } from "react-native";
+import { Dimensions, FlatList, Image, ScrollView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
@@ -10,30 +10,45 @@ import useTheme from "../hooks/useTheme";
 import { height, width } from "../constants/Layout";
 import MovieCard from "../components/MovieCard";
 
+const ncols = ()=> {
+	if(width>700) return 4
+	else if(width>500) return 3
+	else if(width>325) return 2
+	else return 1
+}
+
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
-	const [movies, loading] = useFetch("popular");
+	const [cols, setCols] = useState(ncols())
+	const { data, isLoading, setPath } = useFetch("now_playing");
 	const theme = useTheme();
 	const [active, setActive] = useState<string>("Trending");
+	// Dimensions.addEventListener('change', ()=> {
+	// 	const width = Dimensions.get("window").width
+	// 	if(width>700) setCols(4)
+	// 	else if(width>500) setCols(3)
+	// 	else if(width>325) setCols(2)
+	// 	else setCols(1)
+	// })
 
 	useEffect(() => {
-		console.log(movies);
-	}, [movies]);
+		console.log(data);
+	}, [data]);
 
   const renderItem = ({ item }: any) => {
     return (
       <MovieCard
         item={item}
-        size={4}
+        size={cols}
       />
     );
   };
 
 	return (
 		<View style={styles.container}>
-			<TopSlider tabs={homeTabs} active={active} setActive={setActive} />
+			<TopSlider tabs={homeTabs} active={active} setPath={setPath} setActive={setActive} />
 			<ScrollView style={[tw`h-full w-[100%]`]}>
-				<FlatList data={movies?.results} keyExtractor={(item: any) => item.alt}
-         renderItem={renderItem} numColumns={4} />
+				<FlatList style={tw``} data={data?.results} keyExtractor={(item: any) => item.alt}
+         			renderItem={renderItem} numColumns={cols} />
 					{/* {movies?.results?.map((movie: any) => (
 						<MovieCard movie={movie} />
 					))} */}

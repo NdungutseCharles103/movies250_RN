@@ -2,7 +2,8 @@ import { getApi } from './../utils/apiCallMethods';
 import { useState, useEffect } from 'react';
 
 
-export function useFetch(path: string, method?: string, options?: any) {
+export function useFetch(_path: string, method?: string, options?: any) {
+    const [path, setPath] = useState(_path)
     const [isLoading, setLoading] = useState(true)
     const [data, setData] = useState<any>([])
 
@@ -34,7 +35,7 @@ export function useFetch(path: string, method?: string, options?: any) {
 
     useEffect(() => {
         handleApi()
-    }, [])
+    }, [path])
 
-    return [data, isLoading]
+    return {data, isLoading, setData, setPath}
 }
