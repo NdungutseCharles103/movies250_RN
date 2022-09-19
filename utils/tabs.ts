@@ -26,3 +26,26 @@ export  const homeTabs: Tab[] = [
       cat: 'top_rated'
     },
   ]
+
+  export const movieTabs: Tab[] = [
+    {
+      id: 28,
+      name: 'Action',
+      cat: '28'
+    },
+    {
+      id: 12,
+      name: 'Adventure',
+      cat: '12'
+    },
+    {
+      id: 16,
+      name: 'Animation',
+      cat: '16'
+    },
+    {
+      id: 35,
+      name: 'Comedy',
+      cat: '35'
+    },
+  ]

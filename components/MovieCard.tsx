@@ -9,7 +9,7 @@ const MovieCard = ({item, size}: any) => {
   return (
     <View style={[tw`rounded-lg m-1 w-[${w}%]`, 
     {}]}>
-      <Image style={tw`w-full h-[40]`} resizeMode="cover"
+      <Image style={tw`w-full h-[70] rounded-xl`} resizeMode="cover"
        source={{uri: image_path+item.poster_path}} />
       <CText style={tw`text-center`}>{item.title}</CText>
       {/* <CText>{image_path+item.poster_path}</CText> */}

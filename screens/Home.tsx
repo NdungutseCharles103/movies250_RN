@@ -21,7 +21,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 	const [cols, setCols] = useState(ncols())
 	const { data, isLoading, setPath } = useFetch("now_playing");
 	const theme = useTheme();
-	const [active, setActive] = useState<string>("Trending");
+	const [active, setActive] = useState<string>("now_playing");
 	// Dimensions.addEventListener('change', ()=> {
 	// 	const width = Dimensions.get("window").width
 	// 	if(width>700) setCols(4)

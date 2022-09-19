@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import useTheme from '../hooks/useTheme';
+import TopSlider from '../components/TopSlider';
+import { movieTabs } from '../utils/tabs';
 
 export default function Movies() {
   const { text,} = useTheme()
+  const [active, setActive] = useState('28')
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <TopSlider tabs={movieTabs} active={active} setActive={setActive} />
     </View>
   );
 }
