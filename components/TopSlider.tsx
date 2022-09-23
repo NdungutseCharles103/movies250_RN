@@ -23,28 +23,33 @@ const TopSlider: React.FC<Props> = ({ tabs, active, setActive, setPath }) => {
 	const theme = useTheme();
 
 	return (
-		<ScrollView
-			style={[tw`h-8 my-2`]}
-			horizontal
-			showsHorizontalScrollIndicator={false}
-		>
-			{tabs.map((tab: Tab, i: number) => (
-				<Pressable onPress={() =>{
-					 setPath && setPath(tab.cat)
-					 setActive(tab.cat)}}
-					 key={i}>
-					<CText
-						style={tw`rounded-xl items-center flex px-3 py-1 ${
-							tab.cat === active
-								? `bg-[${theme.text}] text-[${theme.background}]`
-								: ""
-						}`}
+		<View>
+			<ScrollView
+				style={[tw`h-8 my-2`]}
+				horizontal
+				showsHorizontalScrollIndicator={false}
+			>
+				{tabs.map((tab: Tab, i: number) => (
+					<Pressable
+						onPress={() => {
+							setPath && setPath(tab.cat);
+							setActive(tab.cat);
+						}}
+						key={i}
 					>
-						{tab.name}
-					</CText>
-				</Pressable>
-			))}
-		</ScrollView>
+						<CText
+							style={tw`rounded-xl items-center flex px-3 py-1 ${
+								tab.cat === active
+									? `bg-[${theme.text}] text-[${theme.background}]`
+									: ""
+							}`}
+						>
+							{tab.name}
+						</CText>
+					</Pressable>
+				))}
+			</ScrollView>
+		</View>
 	);
 };
 

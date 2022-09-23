@@ -30,10 +30,6 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 	const theme = useTheme();
 	const [active, setActive] = useState<string>("now_playing");
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
-
 	const renderItem = ({ item }: any) => {
 		return <MovieCard item={item} size={cols} />;
 	};
@@ -46,10 +42,12 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 				setPath={setPath}
 				setActive={setActive}
 			/>
-			<ScrollView style={[tw`h-full w-[100%]`]}>
-				<FlatList style={tw``} data={data?.results} keyExtractor={(item: any) => item.alt}
+			{/* <ScrollView style={[tw`h-full w-[100%]`]}> */}
+			<View style={[tw`pb-5`, { height: '95%' }]} >
+				<FlatList style={tw``} data={data?.results} keyExtractor={(item: any) => item.id}
          			renderItem={renderItem} numColumns={cols} />
-			</ScrollView>
+			</View>
+			{/* </ScrollView> */}
 			{/* <Video
 				source={{
 					uri: "https://assets.mixkit.co/videos/download/mixkit-countryside-meadow-4075.mp4",
@@ -63,8 +61,9 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
+		display: 'flex',
 		flexDirection: "column",
-		width: width,
-		height: height,
+		// width: width,
+		// height: height,
 	},
 });
