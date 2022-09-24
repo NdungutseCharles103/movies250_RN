@@ -5,7 +5,7 @@ import {
 	TouchableOpacity,
 	Pressable,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import tw from "twrnc";
 import { Tab } from "../utils/tabs";
 import useTheme from "../hooks/useTheme";
@@ -17,22 +17,31 @@ type Props = {
 	active: string;
 	setActive: React.Dispatch<string>;
 	setPath?: React.Dispatch<string>;
+	tabCategory: string;
+	genre?: boolean;
 };
 
-const TopSlider: React.FC<Props> = ({ tabs, active, setActive, setPath }) => {
+const TopSlider: React.FC<Props> = ({ tabs, active, setActive, setPath , tabCategory, genre}) => {
 	const theme = useTheme();
+	const [cat, setCat] = React.useState<string>(tabCategory);
 
+	useEffect(() => {
+		if(genre) {
+			setCat('discover/movie')
+		}
+	}, [])
+	
 	return (
-		<View>
+		<View
+			style={[tw`h-8 my-2`]}>
 			<ScrollView
-				style={[tw`h-8 my-2`]}
 				horizontal
 				showsHorizontalScrollIndicator={false}
 			>
 				{tabs.map((tab: Tab, i: number) => (
 					<Pressable
 						onPress={() => {
-							setPath && setPath(tab.cat);
+							setPath && setPath(cat+tab.cat);
 							setActive(tab.cat);
 						}}
 						key={i}

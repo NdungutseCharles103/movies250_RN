@@ -49,3 +49,30 @@ export  const homeTabs: Tab[] = [
       cat: '35'
     },
   ]
+export const tvTabs: Tab[] = [
+    {
+      id: 10759,
+      name: 'On Air',
+      cat: 'on_the_air'
+    },
+    {
+      id: 10762,
+      name: 'Popular',
+      cat: 'popular'
+    },
+    {
+      id: 10763,
+      name: 'Top Rated',
+      cat: 'top_rated'
+    },
+    {
+      id: 10764,
+      name: 'Airing Today',
+      cat: 'airing_today'
+    },
+    {
+      id: 10765,
+      name: 'latest',
+      cat: 'latest'
+    }
+  ]

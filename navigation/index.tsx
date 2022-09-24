@@ -8,12 +8,12 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Home from '../screens/Home';
 import Movies from '../screens/Movies';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import TvShows from '../screens/TvShows';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -32,13 +32,9 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 }
-
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -71,7 +67,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TvShows"
-        component={Movies}
+        component={TvShows}
         options={{
           title: 'TvShows',
           tabBarIcon: ({ color }) => <TabBarIcon name="tv" color={color} />,

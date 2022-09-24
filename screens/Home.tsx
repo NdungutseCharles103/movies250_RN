@@ -15,9 +15,8 @@ import tw from "twrnc";
 import useTheme from "../hooks/useTheme";
 import { height, width } from "../constants/Layout";
 import MovieCard from "../components/MovieCard";
-import Video from 'react-native-video'
 
-const ncols = () => {
+export const ncols = () => {
 	if (width > 700) return 4;
 	else if (width > 500) return 3;
 	else if (width > 325) return 2;
@@ -26,13 +25,17 @@ const ncols = () => {
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 	const [cols, setCols] = useState(ncols());
-	const { data, isLoading, setPath } = useFetch("now_playing");
+	const { data, isLoading, setPath } = useFetch("movie/now_playing");
 	const theme = useTheme();
 	const [active, setActive] = useState<string>("now_playing");
 
 	const renderItem = ({ item }: any) => {
 		return <MovieCard item={item} size={cols} />;
 	};
+
+	// useEffect(()=> {
+	// 	console.log(data);
+	// },[data])
 
 	return (
 		<View style={styles.container}>
@@ -41,9 +44,10 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
 				active={active}
 				setPath={setPath}
 				setActive={setActive}
+				tabCategory="movie/"
 			/>
 			{/* <ScrollView style={[tw`h-full w-[100%]`]}> */}
-			<View style={[tw`pb-5`, { height: '95%' }]} >
+			<View style={[tw`pb-5`, { height: '95%', width: '100%' }]} >
 				<FlatList style={tw``} data={data?.results} keyExtractor={(item: any) => item.id}
          			renderItem={renderItem} numColumns={cols} />
 			</View>
