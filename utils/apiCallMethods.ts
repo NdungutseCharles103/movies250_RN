@@ -12,7 +12,7 @@ export const api = axios.create({
 export const getApi = async (path: string, _options?: any) => {
     console.log(`/3/${path}?api_key=${API_KEY}&language=en-US&page=1${_options?.adds && _options?.adds}`)
     try {
-        const res = await api.get(`/3/${path}?api_key=${API_KEY}&language=en-US&page=1${_options?.adds && _options?.adds}`, _options);
+        const res = await api.get(`/3/${path}?api_key=${API_KEY}&language=en-US&page=1${_options?.adds !== undefined && _options?.adds}`, _options);
         const data = await res.data
         return data
     } catch (error: any) {

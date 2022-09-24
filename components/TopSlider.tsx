@@ -41,7 +41,7 @@ const TopSlider: React.FC<Props> = ({ tabs, active, setActive, setPath , tabCate
 				{tabs.map((tab: Tab, i: number) => (
 					<Pressable
 						onPress={() => {
-							setPath && setPath(cat+tab.cat);
+							setPath && setPath(genre?cat:cat+tab.cat);
 							setActive(tab.cat);
 						}}
 						key={i}
